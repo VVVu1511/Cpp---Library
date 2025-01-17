@@ -19,9 +19,6 @@ int main(){
     char book5[64] = {'H','C','M','U','S','1','2','5',',','W','h','a','t',' ','i','s',' ','c','i','n','e','m','a',',','N','g','u','y','e','n',' ','V','a','n',' ','C',',','C','i','n','e','m','a','t','i','c',',','1','9','7','0',',','a','c','t','i','o','n',',','3','0','0',',','\0'};
     char book6[53] = {'H','C','M','U','S','1','2','7',',','T','h','e',' ','f','u','t','u','r','e',',','T','a',' ','T','h','i',' ','D',',','F','u','t','u','r','e',',','1','9','7','7',',','c','o','m','e','d','y',',','1','8','0',',','\0'};
     char book7[53] = {'H','C','M','U','S','1','3','0',',','T','h','e',' ','p','a','s','t',',','N','g','u','y','e','n',' ','T','h','i',' ','E',',','P','a','s','t',',','1','9','7','7',',','a','c','t','i','o','n',',','3','8','0',',','\0'};
-    char card1[59] = {'2','3','1','2','7','1','1','1',',','2','0','/','1','2','/','2','0','2','4',',','2','7','/','1','2','/','2','0','2','4',',','2','8','/','1','2','/','2','0','2','4',',','H','B','O','1','1','2',',','H','C','M','U','S','1','1','3',',','\0'};
-    char card2[56] = {'2','3','1','2','7','5','4','3',',','1','/','1','/','2','0','2','4',',','8','/','1','/','2','0','2','4',',','1','1','/','1','/','2','0','2','4',',','H','C','M','U','S','1','3','0',',','H','C','M','U','S','1','1','9',',','\0'};
-    char card3[57] = {'2','3','1','2','7','5','4','3',',','8','/','2','/','2','0','2','4',',','1','5','/','2','/','2','0','2','4',',','1','4','/','2','/','2','0','2','4',',','H','C','M','U','S','1','2','5',',','H','C','M','U','S','1','2','7',',','\0'};
     
     char type1[7] = {'h','o','r','r','o','r','\0'};
     char type2[7] = {'c','o','m','e','d','y','\0'};
@@ -56,17 +53,10 @@ int main(){
     strcpy(books_information[6], book7);
 
     char** cards;
-    cards = new char*[3];
-    cards[0] = new char[strlen(card1) + 1];
-    strcpy(cards[0], card1);
-    cards[1] = new char[strlen(card2) + 1];
-    strcpy(cards[1], card2);
-    cards[2] = new char[strlen(card3) + 1];
-    strcpy(cards[2], card3);
-
+    
     int number_of_books = 7;
     int number_of_readers = 2;
-    int number_of_cards = 3;
+    int number_of_cards = 0;
     
     char** book_types;
     book_types = new char*[4];
@@ -88,6 +78,9 @@ int main(){
 
     int number_of_types = 4;
     int number_of_genders = 2;
+
+    bool isBookInLib[number_of_books];
+    for(int i = 0; i < number_of_books; i++) isBookInLib[i] = true;
 
     bool execute = true;
     
@@ -168,12 +161,30 @@ int main(){
             case 5:
                 std::cout << "Enter social ID: ";
                 std::cin.getline(input,MAX_INFOR_LENGTH);
-                findUsingInfor(readers_information,number_of_readers,input,2,0);
+                reader_ID = findUsingInfor(readers_information,number_of_readers,input,2);
+                
+                if(reader_ID != -1){
+                    printInforOfOneReader(readers_information[reader_ID]);
+                }
+
+                else{
+                    std::cout << "There is no reader with entered social ID\n";
+                }
+
                 break;
             case 6:
                 std::cout << "Enter full name: ";
                 std::cin.getline(input,MAX_INFOR_LENGTH);
-                findUsingInfor(readers_information,number_of_readers,input,1,0);
+                reader_ID = findUsingInfor(readers_information,number_of_readers,input,1);
+                
+                if(reader_ID != -1){
+                    printInforOfOneReader(readers_information[reader_ID]);
+                }
+
+                else{
+                    std::cout << "There is no reader with entered name\n";
+                }
+
                 break;
             case 7:
                 viewList(books_information,number_of_books,1);
@@ -215,23 +226,41 @@ int main(){
             case 11:
                 std::cout << "Enter ISBN: ";
                 std::cin.getline(input,MAX_INFOR_LENGTH);
-                findUsingInfor(books_information,number_of_books,input,0,1);
+                book_ID = findUsingInfor(books_information,number_of_books,input,0);
+                
+                if(book_ID != -1){
+                    printInforOfOneBook(books_information[book_ID]);
+                }
+
+                else{
+                    std::cout << "There is no book with entered ISBN\n";
+                }
+
                 break;
             case 12:
                 std::cout << "Enter book's name: ";
                 std::cin.getline(input,MAX_INFOR_LENGTH);
-                findUsingInfor(books_information,number_of_books,input,1,1);
+                book_ID = findUsingInfor(books_information,number_of_books,input,1);
+
+                if(book_ID != -1){
+                    printInforOfOneBook(books_information[book_ID]);
+                }
+
+                else{
+                    std::cout << "There is no book with entered name\n";
+                }
+
                 break;
             case 13:
                 std::cout << "Enter information for new card: " << "\n";
-                getInputOfBorrowCard(input);
+                getInputOfBorrowCard(input,isBookInLib,books_information,number_of_books);
                 addOneToArray(cards,number_of_cards,input);
                 std::cout << "Successfully add card" << "\n";
                 break;
             case 14:
                 std::cout << "Enter information: " << "\n";
                 getInputOfReturnCard(input);
-                returnCard(cards,number_of_cards,input);
+                returnCard(cards,number_of_cards,input,books_information,isBookInLib,number_of_books);
                 std::cout << "Successfully add return card!" << "\n";
                 break;
             case 15:
@@ -247,11 +276,13 @@ int main(){
                 viewNumberOfElementByType(readers_information,gender_types,number_of_readers,number_of_genders,4);
                 break;
             case 19:
-                std::cout << "Number of books being borrowed: " << numberOfBooksInLibrary(cards,number_of_cards) << "\n";
+                std::cout << "Number of books being borrowed: " << numberOfBooksBeingBorrowed(isBookInLib,number_of_books) << "\n";
                 break;
             case 20:
-                viewReadersLate(cards,number_of_cards);
+                prompt("Enter today's date: ",input);
+                viewReadersLate(cards,number_of_cards,input);
                 break;
+
             default:
                 break;
         }
@@ -262,19 +293,10 @@ int main(){
     }
 
     
-    
-
-    for(int i = 0; i < number_of_readers; i++) delete []readers_information[i];
-    for(int i = 0; i < number_of_books; i++) delete []books_information[i];
-    for(int i = 0; i < number_of_cards; i++) delete []cards[i];
-    for(int i = 0; i < number_of_genders; i++) delete []gender_types[i];
-    for(int i = 0; i < number_of_types; i++) delete []book_types[i];
-
-    delete []readers_information;
-    delete []books_information;
-    delete []cards;
-    delete []book_types;
-    delete []gender_types;
-
+    delete2Dchar(readers_information,number_of_books);
+    delete2Dchar(books_information,number_of_books);
+    delete2Dchar(cards,number_of_cards);
+    delete2Dchar(books_information,number_of_books);
+    delete2Dchar(gender_types,number_of_genders);
     return 0;
 }

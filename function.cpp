@@ -23,7 +23,7 @@ void getInputOfBook(char *&new_element){
     delete2Dchar(input,7);
 }   
 
-void getInputOfBorrowCard(char *&new_element){
+void getInputOfBorrowCard(char* &new_element,bool stateOfBooks[],char** books_in_lib,int number_of_books_in_lib){
     int number_of_books;
     std::cout << "Enter number of books you want to borrow: ";
     std::cin >> number_of_books;
@@ -48,6 +48,9 @@ void getInputOfBorrowCard(char *&new_element){
 
     for(int i = 0; i < number_of_books; i++){
         prompt("ISBN of book: ",input[i + 4]);
+        
+        int book_ID = findUsingInfor(books_in_lib,number_of_books_in_lib,input[i + 4],0);
+        stateOfBooks[book_ID] = false;
     }
     
     writeBack(new_element,1,input,4 + number_of_books);
@@ -70,19 +73,20 @@ void getInputOfReturnCard(char *&new_element){
     delete2Dchar(input,2);
 }
 
-void findUsingInfor(char **array, int number_of_elements, char *input, int type_of_infor,int type){
+int findUsingInfor(char **array, int number_of_elements, char *input, int type_of_infor){
     
     for(int i = 0; i < number_of_elements; i++){
         int num = 0;
         char** infor = parseInfor(array[i],num);
         
         if(strcmp(infor[type_of_infor],input) == 0){
-            if(type == 0) printInforOfOneReader(array[i]);
-            else printInforOfOneBook(array[i]);
+            return i;
         }
 
         delete2Dchar(infor,num);
     }
+
+    return -1;
 }
 
 char** parseInfor(char *information, int& number_of_ele){
@@ -187,7 +191,6 @@ void addOneToArray(char **&array, int &number_of_elements, char *new_element){
 
     new_array[number_of_elements] = new char[strlen(new_element) + 1];
     strcpy(new_array[number_of_elements],new_element);
-
     
     delete2Dchar(array,number_of_elements);
     
@@ -222,8 +225,6 @@ void getInputOfReader(char *&new_element){
 }
 
 void writeBack(char *&information, int type, char **input,int num_of_input){
-    // if(information != nullptr) delete []information;
-    
     int size = 0;
     for(int i = 0; i < num_of_input; i++){
         size += strlen(input[i]);
@@ -362,57 +363,157 @@ void viewNumberOfElementByType(char **array, char **types, int number_of_ele_in_
     }
 }
 
-void viewReadersLate(char **array, int number_of_elements){
+void viewReadersLate(char **array, int number_of_elements,char* today){
+    bool atLeastOne = false;
+    char temp[2] = {'-','\0'};
+
     for(int i = 0; i < number_of_elements; i++){
         int number_of_output = 0;
         char** infor = parseInfor(array[i],number_of_output);
+        bool hasReturn = false;
 
-        if(infor[3] - infor[2] > 7){
+        if(strcmp(infor[3],temp) != 0){
+            if(isDay1LargerThanDay2(infor[3],infor[2]) == true){
+                hasReturn = true;
+            }
+        }
+
+        else{
+            if(isDay1LargerThanDay2(today,infor[2]) == true){
+                hasReturn = true;
+            }
+        }
+        
+        if(hasReturn == true){
             std::cout << infor[0] << "\n";
+            atLeastOne = true;
         }
 
         delete2Dchar(infor,number_of_elements);
     }
+
+    if(atLeastOne == false){
+        std::cout << "No readers are late!\n";
+    }
 }
 
-void returnCard(char **array, int number_of_elements, char *input){
+void returnCard(char** array,int number_of_elements,char* input,char** booksInLib,bool isBookInLib[],int number_of_books_in_lib){
     for(int i = 0; i < number_of_elements; i++){
         int number_of_output = 0;
         char** infor = parseInfor(array[i],number_of_output);
+        char temp[2] = {'-','\0'};
 
-        if(strcmp(infor[0],input) == 0){
+        if(strcmp(infor[0],input) == 0 && strcmp(infor[3],temp) == 0){
             infor[3] = new char[strlen(infor[1]) + 1];
             strcpy(infor[3],infor[1]);
             
             writeBack(array[i],1,infor,number_of_output);
+
+            for(int i = 4; i < number_of_output - 4; i++){
+                int book_ID = findUsingInfor(booksInLib,number_of_books_in_lib,infor[i],0);
+                isBookInLib[book_ID] = true;
+            }
         }
 
         delete2Dchar(infor,number_of_output);
     }
 }
 
-int numberOfBooksInLibrary(char **array, int number_of_elements){
-    int number_of_books = 0;
-    
-    for(int i = 0; i < number_of_elements; i++){
-        int number_of_ele = 0;
-        char** infor = parseInfor(array[i],number_of_ele);
+int numberOfBooksBeingBorrowed(bool stateOfBooks[],int number_of_books){
+    int result = 0;
 
-        number_of_books += number_of_ele - 4;
-
-        delete2Dchar(infor,number_of_ele);
+    for(int i = 0; i < number_of_books; i++){
+        if(stateOfBooks[i] == false) result++;
     }
 
-    return number_of_books;
+    return result;
 }
 
 void delete2Dchar(char** deleted_2d_array,int number_of_elements){
     for(int i = 0; i < number_of_elements; i++){
         delete1Dchar(deleted_2d_array[i]);
     }
-    delete[]deleted_2d_array;
+    
+    if(number_of_elements > 0) delete[]deleted_2d_array;
 }
 
 void delete1Dchar(char* deleted_1d_array){
     delete[]deleted_1d_array;
+}
+
+bool isDay1LargerThanDay2(char* day1,char* day2){
+    int y1;
+    int m1;
+    int d1;
+    int y2;
+    int m2;
+    int d2;
+    parseDateCharIntoDayMonthYear(day1,d1,m1,y1);
+    parseDateCharIntoDayMonthYear(day2,d2,m2,y2);
+    
+    if(y1 > y2) return true;
+    else if(y1 < y2) return false;
+
+    if(m1 > m2) return true;
+    else if(m1 < m2) return false;
+
+    if(d1 > d2) return true;
+    else if(d1 < d2) return false;
+
+    return false;
+}
+
+void parseDateCharIntoDayMonthYear(char* date,int&day,int&month,int&year){
+    char temp[MAX_INFOR_LENGTH];
+    resetTemporaryInfor(temp,MAX_INFOR_LENGTH);
+
+    int first_slash = findXpositionOfSpecificCharInCharArray(date,'/',1);
+    int second_slash = findXpositionOfSpecificCharInCharArray(date,'/',2);;
+    
+    char* day_char = subChar(date,0,first_slash);
+    char* month_char = subChar(date,first_slash + 1,second_slash);
+    char* year_char = subChar(date,second_slash + 1,strlen(date));
+
+    day = convertCharToNum(day_char);
+    month = convertCharToNum(month_char);
+    year = convertCharToNum(year_char);
+    
+
+    delete1Dchar(day_char);
+    delete1Dchar(month_char);
+    delete1Dchar(year_char);
+}
+
+int convertCharToNum(char *input){
+    int result = 0;
+    for(int i = 0; i < strlen(input); i++){
+        result = result * 10 + (input[i] - '0');
+    }
+
+    return result;
+}
+
+char *subChar(char *input, int start, int end){
+    char *result = new char[end - start + 1];
+    
+    for(int i = start; i < end; i++){
+        result[i - start] = input[i];
+    }
+
+    result[end - start] = '\0';
+
+    return result;
+}
+
+int findXpositionOfSpecificCharInCharArray(char* input,char specific_char,int X){
+    int cnt = 0;
+
+    for(int i = 0; i < strlen(input); i++){
+        if(input[i] == specific_char){
+            cnt++;
+        }
+        if(cnt == X){ return i;}
+    }
+
+    return -1;
 }
