@@ -102,9 +102,9 @@ int main(){
                   << "12. Tim sach theo ten sach" << "\n"
                   << "13. Lap phieu muon sach" << "\n"
                   << "14. Lap phieu tra sach" << "\n"
-                  << "15. So luong sach trong thu vien" << "\n" //
+                  << "15. So luong sach trong thu vien" << "\n" 
                   << "16. So luong sach theo the loai" << "\n"
-                  << "17. So luong doc gia" << "\n" //
+                  << "17. So luong doc gia" << "\n" 
                   << "18. So luong doc gia theo gioi tinh" << "\n"
                   << "19. So sach dang duoc muon" << "\n"
                   << "20. Danh sach doc gia bi tre han" << "\n"

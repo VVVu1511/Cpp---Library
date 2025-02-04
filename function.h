@@ -4,18 +4,35 @@
 
 #define MAX_INFOR_LENGTH 1000
 
-//ok
 
 //chức năng: chia một chuỗi char dài thành mảng 2 chiều gồm nhiều chuỗi char nhỏ, mỗi phần tử cách nhau dấu phẩy
 //input example: Vu Van Vu,23CLC3,1/1/2005,
 //output example: {{V','u',' ','V','a','n',' ','V','u'},{'2','3','C','L','C','3'},{'1','/','1','/','2','0','0','5'}}
-
 char** parseInfor(char *information, int& number_of_ele);
 
 //chức năng: reset các kí tự trong chuỗi arr[] thành '\0'
+//input: arr[5] = {'a','b','\0','\0','\0'}
+//output: arr[5] = {'\0','\0','\0','\0','\0'} 
 void resetTemporaryInfor(char arr[],int length);
 
 //chức năng: in ra các thông tin cơ bản của 1 đọc giả.
+//input: char reader1[100] = {'2','3','1','2','7','5','4','3',',','V','u',' ','V','a','n',' ','V','u',','
+                            //,'1','1','0','0',' ','1','0','0','1',' ','0','1','1','0',',','1','5','/','1'
+                            //,'1','/','2','0','0','5',',','m','a','l','e',',','v','v','v','@','g','m','a'
+                            //,'i','l','.','c','o','m',',','2','2','2',' ','G','o','d',' ','S','t','r','e'
+                            //,'e','t',',','1','2','/','9','/','2','0','2','3',',','1','2','/','9','/','2'
+                            //,'0','2','7',',','\0'};
+// output: 
+// Reader ID: 0
+// Ma doc gia: 23127543
+// Ho ten: Vu Van Vu
+// Chung minh nhan dan: 1100 1001 0110
+// Ngay thang nam sinh: 15/11/2005
+// Gioi tinh: male
+// Email: vvv@gmail.com
+// Dia chi: 222 God Street
+// Ngay lap the: 12/9/2023
+// Ngay het han: 12/9/2027
 void printInforOfOneReader(char* information);
 
 //chức năng: in ra thông tin của các đọc giả, hoặc các quyển sách trong thư viện

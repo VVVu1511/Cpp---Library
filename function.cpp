@@ -310,35 +310,35 @@ void numberOfElementByType(char **array, char **types, int number_of_ele_in_arra
 }
 
 void viewTypeOfInformationOfReader(){
-    std::cout << "0. Reader code" << "\n"
-              << "1. Full Name" << "\n"
-              << "2. Reader social ID" << "\n"
-              << "3. Date of birth" << "\n"
-              << "4. Gender" << "\n"
+    std::cout << "0. Ma doc gia" << "\n"
+              << "1. Ho ten" << "\n"
+              << "2. Chung minh nhan dan" << "\n"
+              << "3. Ngay thang nam sinh" << "\n"
+              << "4. Gioi tinh" << "\n"
               << "5. Email" << "\n"
-              << "6. Address" << "\n"
-              << "7. Begin date" << "\n"
-              << "8. End date" << "\n";
+              << "6. Dia Chi" << "\n"
+              << "7. Ngay lap the" << "\n"
+              << "8. Ngay het han" << "\n";
 }
 
 void viewTypeOfInformationOfBook(){
     std::cout << "0. ISBN" << "\n"
-              << "1. Book's name" << "\n"
-              << "2. Author" << "\n"
-              << "3. Publisher" << "\n"
-              << "4. Publish year" << "\n"
-              << "5. Type" << "\n"
-              << "6. Price" << "\n";
+              << "1. Ten sach" << "\n"
+              << "2. Ten tac gia" << "\n"
+              << "3. Nha xuat ban" << "\n"
+              << "4. Nam xuat ban" << "\n"
+              << "5. The loai" << "\n"
+              << "6. Gia" << "\n";
 }
 
 void viewTypeOfInformationOfCard(){
-    std::cout << "0. Reader code" << "\n"
-              << "1. Borrowing Date" << "\n"
-              << "2. Expected return day" << "\n"
-              << "3. Actual return day" << "\n"
-              << "4. Borrowed books' ISBN" << "\n"
-              << "5. Money" << "\n"
-              << "6. Exist" << "\n";
+    std::cout << "0. Ma doc gia" << "\n"
+              << "1. Ngay muon" << "\n"
+              << "2. Ngay tra du kien" << "\n"
+              << "3. Ngay tra thuc te" << "\n"
+              << "4. Danh sach ISBN" << "\n"
+              << "5. Tien phat" << "\n"
+              << "6. Ton tai" << "\n";
 }
 
 void viewNumberOfElementByType(char **array, char **types, int number_of_ele_in_array, int number_of_types,int type_of_infor){
