@@ -1,13 +1,6 @@
 #include<iostream>
 #include "function.h"
 
-//mã độc giả, họ tên, CMND, ngày tháng năm sinh, giới tính, email, địa chỉ, ngày lập thẻ và 
-//ngày hết hạn của thẻ
-
-// Mỗi phiếu mượn/trả sách chứa thông tin về mã độc giả, ngày mượn, ngày trả dự kiến, ngày trả thực tế 
-// và danh sách ISBN của các sách được mượn. Mỗi sách được mượn tối đa trong 7 ngày, nếu 
-// quá hạn sẽ bị phạt tiền 5.000 đồng/ngày. 
-// Nếu sách bị mất thì độc giả đó sẽ bị phạt số tiền tương ứng 200% giá sách
 
 int main(){
     char reader1[100] = {'2','3','1','2','7','5','4','3',',','V','u',' ','V','a','n',' ','V','u',',','1','1','0','0',' ','1','0','0','1',' ','0','1','1','0',',','1','5','/','1','1','/','2','0','0','5',',','m','a','l','e',',','v','v','v','@','g','m','a','i','l','.','c','o','m',',','2','2','2',' ','G','o','d',' ','S','t','r','e','e','t',',','1','2','/','9','/','2','0','2','3',',','1','2','/','9','/','2','0','2','7',',','\0'};
@@ -298,5 +291,6 @@ int main(){
     delete2Dchar(cards,number_of_cards);
     delete2Dchar(books_information,number_of_books);
     delete2Dchar(gender_types,number_of_genders);
+
     return 0;
 }
