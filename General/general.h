@@ -1,7 +1,7 @@
 #pragma once
-#include "book.h"
-#include "reader.h"
-#include "helper.h"
+#include "Book/book.h"
+#include "Reader/reader.h"
+#include "Helper/helper.h"
 
 
 // Chức năng: Hiển thị danh sách độc giả hoặc sách.
@@ -67,3 +67,6 @@ void deleteInfor(char** &readers,int ID,int type_of_infor,int type);
 // In ra số lượng phần tử cho từng loại thông tin.
 void viewNumberOfElementByType(char** array, char** types,int number_of_ele_in_array,int number_of_types,int type_of_infor);
 
+void increaseFine();
+
+void notifyLosingBook(char* MSSV, int num_of_books);

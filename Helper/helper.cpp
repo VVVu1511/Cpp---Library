@@ -11,27 +11,18 @@ char** parseInfor(char *information, int& number_of_ele){
 
     number_of_ele = num_of_elements;
 
-    char temp[MAX_INFOR_LENGTH] = {'\0'};
-
-    int cur_char_in_temp = 0;
     int cur_number_of_infor = 0;
     char** result = new char*[num_of_elements];
-    
-    for(int i = 0; i < infor_length; i++){
-        if(information[i] == ','){
-            int size = strlen(temp) + 1;
-            result[cur_number_of_infor] = new char[size];
-            strcpy(result[cur_number_of_infor], temp);
+    char temp[MAX_INFOR_LENGTH];
+    strcpy(temp,information);
+    char* temp2 = strtok(temp,",");
 
-            cur_number_of_infor++;
-            
-            resetTemporaryInfor(temp,MAX_INFOR_LENGTH);
-            cur_char_in_temp = 0;
-        }
-        else{
-            temp[cur_char_in_temp] = information[i];
-            cur_char_in_temp++;
-        }
+    while(temp2 != nullptr){
+        int size = strlen(temp2) + 1;
+        result[cur_number_of_infor] = new char[size];
+        strcpy(result[cur_number_of_infor], temp2);
+        cur_number_of_infor++;
+        temp2 = strtok(nullptr,",");
     }
 
     return result;
@@ -118,7 +109,7 @@ void parseDateCharIntoDayMonthYear(char* date,int&day,int&month,int&year){
     resetTemporaryInfor(temp,MAX_INFOR_LENGTH);
 
     int first_slash = findXpositionOfSpecificCharInCharArray(date,'/',1);
-    int second_slash = findXpositionOfSpecificCharInCharArray(date,'/',2);;
+    int second_slash = findXpositionOfSpecificCharInCharArray(date,'/',2);
     
     char* day_char = subChar(date,0,first_slash);
     char* month_char = subChar(date,first_slash + 1,second_slash);

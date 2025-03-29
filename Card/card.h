@@ -1,6 +1,6 @@
 #pragma once
-#include "helper.h"
-#include "general.h"
+#include "Helper/helper.h"
+#include "General/general.h"
 
 
 // Chức năng:

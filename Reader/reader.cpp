@@ -1,7 +1,6 @@
 #include "reader.h"
 
 
-
 void viewReadersLate(char **array, int number_of_elements,char* today){
     bool atLeastOne = false;
     char temp[2] = {'-','\0'};
@@ -39,16 +38,16 @@ void viewReadersLate(char **array, int number_of_elements,char* today){
 void printInforOfOneReader(char* information){
     int number;
     char** parsed_result = parseInfor(information,number);
-
+    
     std::cout << "Ma doc gia: " << parsed_result[0] << "\n"
-                  << "Ho ten: " <<  parsed_result[1] << "\n"
-                  << "Chung minh nhan dan: " <<  parsed_result[2] << "\n"
-                  << "Ngay thang nam sinh: " <<  parsed_result[3] << "\n"
-                  << "Gioi tinh: " <<  parsed_result[4] << "\n"
-                  << "Email: " <<  parsed_result[5] << "\n"
-                  << "Dia chi: " <<  parsed_result[6] << "\n"
-                  << "Ngay lap the: " <<  parsed_result[7] << "\n"
-                  << "Ngay het han: " <<  parsed_result[8] << "\n";
+                << "Ho ten: " <<  parsed_result[1] << "\n"
+                << "Chung minh nhan dan: " <<  parsed_result[2] << "\n"
+                << "Ngay thang nam sinh: " <<  parsed_result[3] << "\n"
+                << "Gioi tinh: " <<  parsed_result[4] << "\n"
+                << "Email: " <<  parsed_result[5] << "\n"
+                << "Dia chi: " <<  parsed_result[6] << "\n"
+                << "Ngay lap the: " <<  parsed_result[7] << "\n"
+                << "Ngay het han: " <<  parsed_result[8] << "\n";
     
     delete2Dchar(parsed_result,number);
 }
@@ -80,12 +79,12 @@ void getInputOfReader(char *&new_element){
 
 void viewTypeOfInformationOfReader(){
     std::cout << "0. Ma doc gia" << "\n"
-              << "1. Ho ten" << "\n"
-              << "2. Chung minh nhan dan" << "\n"
-              << "3. Ngay thang nam sinh" << "\n"
-              << "4. Gioi tinh" << "\n"
-              << "5. Email" << "\n"
-              << "6. Dia Chi" << "\n"
-              << "7. Ngay lap the" << "\n"
-              << "8. Ngay het han" << "\n";
+            << "1. Ho ten" << "\n"
+            << "2. Chung minh nhan dan" << "\n"
+            << "3. Ngay thang nam sinh" << "\n"
+            << "4. Gioi tinh" << "\n"
+            << "5. Email" << "\n"
+            << "6. Dia Chi" << "\n"
+            << "7. Ngay lap the" << "\n"
+            << "8. Ngay het han" << "\n";
 }

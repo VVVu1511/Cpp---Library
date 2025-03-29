@@ -1,8 +1,8 @@
 #include<iostream>
-#include "general.h"
-#include "reader.h"
-#include "book.h"
-#include "card.h"
+#include "General/general.h"
+#include "Reader/reader.h"
+#include "Book/book.h"
+#include "Card/card.h"
 
 
 int main(){
@@ -87,29 +87,29 @@ int main(){
     
     while(execute != false){
         std::cout << "LIBRARY MANAGEMENT SYSTEM" << "\n"
-                  << "0. Thoat" << "\n"
-                  << "1. Danh sach doc gia" << "\n"
-                  << "2. Them doc gia" << "\n"
-                  << "3. Chinh sua thong tin 1 doc gia" << "\n"
-                  << "4. Xoa thong tin 1 doc gia" << "\n"
-                  << "5. Tim kiem doc gia theo CMND/CCCD" << "\n"
-                  << "6. Tim kiem doc gia theo ho ten" << "\n"
+                << "0. Thoat" << "\n"
+                << "1. Danh sach doc gia" << "\n"
+                << "2. Them doc gia" << "\n"
+                << "3. Chinh sua thong tin 1 doc gia" << "\n"
+                << "4. Xoa thong tin 1 doc gia" << "\n"
+                << "5. Tim kiem doc gia theo CMND/CCCD" << "\n"
+                << "6. Tim kiem doc gia theo ho ten" << "\n"
 
-                  << "7. Danh sach sach trong thu vien" << "\n"
-                  << "8. Them sach" << "\n"
-                  << "9. Chinh sua thong tin 1 quyen sach" << "\n"
-                  << "10. Xoa thong tin sach" << "\n"
-                  << "11. Tim sach theo ISBN" << "\n"
-                  << "12. Tim sach theo ten sach" << "\n"
-                  << "13. Lap phieu muon sach" << "\n"
-                  << "14. Lap phieu tra sach" << "\n"
-                  << "15. So luong sach trong thu vien" << "\n" 
-                  << "16. So luong sach theo the loai" << "\n"
-                  << "17. So luong doc gia" << "\n" 
-                  << "18. So luong doc gia theo gioi tinh" << "\n"
-                  << "19. So sach dang duoc muon" << "\n"
-                  << "20. Danh sach doc gia bi tre han" << "\n"
-                  << "Enter your choice: " << "\n"; 
+                << "7. Danh sach sach trong thu vien" << "\n"
+                << "8. Them sach" << "\n"
+                << "9. Chinh sua thong tin 1 quyen sach" << "\n"
+                << "10. Xoa thong tin sach" << "\n"
+                << "11. Tim sach theo ISBN" << "\n"
+                << "12. Tim sach theo ten sach" << "\n"
+                << "13. Lap phieu muon sach" << "\n"
+                << "14. Lap phieu tra sach" << "\n"
+                << "15. So luong sach trong thu vien" << "\n" 
+                << "16. So luong sach theo the loai" << "\n"
+                << "17. So luong doc gia" << "\n" 
+                << "18. So luong doc gia theo gioi tinh" << "\n"
+                << "19. So sach dang duoc muon" << "\n"
+                << "20. Danh sach doc gia bi tre han" << "\n"
+                << "Enter your choice: " << "\n"; 
         int choice;
         int reader_ID;
         int type_to_be_deleted;
@@ -293,7 +293,8 @@ int main(){
         delete[] input;
     }
 
-    
+
+
     delete2Dchar(readers_information,number_of_books);
     delete2Dchar(books_information,number_of_books);
     delete2Dchar(cards,number_of_cards);
