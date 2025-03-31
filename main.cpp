@@ -70,8 +70,8 @@ int main(){
                 << "17. So luong doc gia" << "\n" 
                 << "18. So luong doc gia theo gioi tinh" << "\n"
                 << "19. So sach dang duoc muon" << "\n"
-                << "20. Danh sach doc gia bi tre han" << "\n"
-                << "Enter your choice: " << "\n"; 
+                << "20. Danh sach doc gia bi tre han" << "\n\n"
+                << "Enter your choice: ";
         int choice;
         int reader_ID;
         int type_to_be_deleted;
@@ -123,6 +123,7 @@ int main(){
             case 5:
                 std::cout << "Enter social ID: ";
                 std::cin.getline(input,1000);
+                
                 reader_ID = findUsingInfor(readers,number_of_readers,input,2);
                 
                 if(reader_ID != -1){
@@ -217,6 +218,7 @@ int main(){
                 std::cout << "Enter information for new card: " << "\n";
                 getInputOfBorrowCard(input,isBookInLib,books_information,number_of_books);
                 addOneToArray(cards,number_of_cards,input);
+
                 std::cout << "Successfully add card" << "\n";
                 break;
             case 14:
@@ -251,7 +253,7 @@ int main(){
 
         system("pause");
         system("cls");
-        delete[] input;
+        
     }
 
     return 0;

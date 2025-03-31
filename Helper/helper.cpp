@@ -37,6 +37,19 @@ void prompt(const char line[], char input[]){
     std::cin.getline(input,1000);
 }
 
+int intervalsBetween2Days(char first_date[], char second_date[]){
+    int y1;
+    int m1;
+    int d1;
+    int y2;
+    int m2;
+    int d2;
+    parseDateCharIntoDayMonthYear(first_date,d1,m1,y1);
+    parseDateCharIntoDayMonthYear(second_date,d2,m2,y2);
+
+
+}
+
 bool isDay1LargerThanDay2(char day1[],char day2[]){
     int y1;
     int m1;
@@ -60,24 +73,24 @@ bool isDay1LargerThanDay2(char day1[],char day2[]){
 }
 
 void parseDateCharIntoDayMonthYear(char date[],int&day,int&month,int&year){
-    char temp[1000];
-    
-    char temp[50], day_char[1000], month_char[1000],year_char[1000];
-    strcpy(temp, date);
+    // char temp[1000],day_char[1000], month_char[1000],year_char[1000];
 
-    char* token = strtok(temp, "/");
-    if (token) strcpy(day_char, token);
+    // strcpy(temp, date);
 
-    token = strtok(nullptr, "/");
-    if (token) strcpy(month_char, token);
+    // char* token = strtok(temp, "/");
+    // if (token) strcpy(day_char, token);
 
-    token = strtok(nullptr, "/");
-    if (token) strcpy(year_char, token);
+    // token = strtok(nullptr, "/");
+    // if (token) strcpy(month_char, token);
 
-    day = convertCharToNum(day_char);
-    month = convertCharToNum(month_char);
-    year = convertCharToNum(year_char);
-    
+    // token = strtok(nullptr, "/");
+    // if (token) strcpy(year_char, token);
+
+    // day = convertCharToNum(day_char);
+    // month = convertCharToNum(month_char);
+    // year = convertCharToNum(year_char);
+
+    sscanf(date, "%d/%d/%d", &day, &month, &year);
 }
 
 int convertCharToNum(char input[]){

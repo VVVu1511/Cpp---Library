@@ -7,7 +7,7 @@ int findUsingInfor(char infor[][1000], int number_of_elements, char input[], int
         char res[100][1000];
         parseInfor(res,infor[i],num);
         
-        if(strcmp(infor[type_of_infor],input) == 0){
+        if(strcmp(res[type_of_infor],input) == 0){
             return i;
         }
     }

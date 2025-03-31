@@ -18,7 +18,6 @@
 void returnCard(char array[][1000],int number_of_elements,char input[],char booksInLib[][1000],bool isBookInLib[],int number_of_books_in_lib);
 
 
-
 // Chức năng: Lấy thông tin mượn sách của người đọc, bao gồm mã độc giả, ngày mượn, ngày trả dự kiến và danh sách các sách được mượn.
 // Input:
 // Mã độc giả, ngày mượn, ngày trả dự kiến và mã ISBN của sách.

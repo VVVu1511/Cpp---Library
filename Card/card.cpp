@@ -1,20 +1,31 @@
 #include "card.h"
 
-void returnCard(char array[][1000],int number_of_elements,char input[],char booksInLib[][1000],bool isBookInLib[],int number_of_books_in_lib){
+void returnCard(char array[][1000],int number_of_elements,char input[],char booksInLib[][1000],bool isBookInLib[],int number_of_books_in_lib){    
+    char input_infor[100][1000];
+    int num_of_input_infor;
+    parseInfor(input_infor,input,num_of_input_infor);
+
     for (int i = 0; i < number_of_elements; i++) {
-        int number_of_output = 0;
-        char infor[100][1000];
-        parseInfor(infor, array[i], number_of_output);
+        char card_infor[100][1000];
+        int num_of_infor;
+        parseInfor(card_infor,array[i],num_of_infor);
 
-        if (strcmp(infor[0], input) == 0 && strcmp(infor[3], "-") == 0) {
-            strcpy(infor[3], infor[1]);  
-            writeBack(array[i], 1, infor, number_of_output);
+        if(strcmp(card_infor[0],input_infor[0]) != 0) continue;
 
-            for (int j = 4; j < number_of_output - 4; j++) {
-                int book_ID = findUsingInfor(booksInLib, number_of_books_in_lib, infor[j], 0);
-                isBookInLib[book_ID] = true;
+        for(int j = 2; j < num_of_input_infor; j++){
+            
+            int bookID = findUsingInfor(booksInLib, number_of_books_in_lib, input_infor[j] , 0);
+            isBookInLib[bookID] = true;
+
+            for(int k = 3; k < num_of_infor; k += 2){
+                if(strcmp(card_infor[k],input_infor[j]) != 0) continue;
+
+                strcpy(card_infor[k + 1], input_infor[1]);
+                break;
             }
         }
+
+        break;
     }
 }
 
@@ -34,28 +45,36 @@ void getInputOfBorrowCard(char new_element[],bool stateOfBooks[],char books_in_l
     std::cin >> number_of_books;
     std::cin.ignore();
     
-    char input[4 + number_of_books][1000];
+    char input[3 + number_of_books * 2][1000];
 
     prompt("Ma doc gia: ",input[0]);
     prompt("Ngay muon: ",input[1]);
     prompt("Ngay tra du kien: ",input[2]);
-    strcpy(input[3],"-");
 
-    for(int i = 0; i < number_of_books; i++){
-        prompt("ISBN of book: ",input[i + 4]);
-        
-        int book_ID = findUsingInfor(books_in_lib,number_of_books_in_lib,input[i + 4],0);
+    for(int i = 0; i < number_of_books; i += 2){
+        prompt("ISBN of book: ",input[i + 3]);
+        strcpy(input[i + 4], "-");
+        int book_ID = findUsingInfor(books_in_lib,number_of_books_in_lib,input[i + 3],0);
         stateOfBooks[book_ID] = false;
     }
     
-    writeBack(new_element,1,input,4 + number_of_books);
+    writeBack(new_element,1,input,3 + number_of_books * 2);
 }
 
 void getInputOfReturnCard(char new_element[]){
-    char input[2][1000];
+    int N;
+    std::cout << "Nhap so luong sach se tra: ";
+    std::cin >> N;
+    std::cin.ignore();
+
+    char input[2 + N][1000];
 
     prompt("Enter reader code: ",input[0]);
     prompt("Enter return date: ",input[1]);
-
-    writeBack(new_element,1,input,2);
+    
+    for(int i = 0; i < N; i++){
+        prompt("ISBN of book: ",input[i + 2]);
+    }
+    
+    writeBack(new_element,1,input,N + 2);
 }

@@ -77,4 +77,7 @@ void parseDateCharIntoDayMonthYear(char date[],int&day,int&month,int&year);
 int convertCharToNum(char input[]);
 
 
+int intervalsBetween2Days(char first_date[], char second_date[]);
+
+
 

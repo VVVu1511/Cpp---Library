@@ -1,5 +1,31 @@
 #include "reader.h"
 
+void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char current_date[]){
+    double result = 0;
+
+    for(int i = 0; i < number_of_cards; i++){
+        char card_infor[100][1000];
+        int num_of_infor;
+        parseInfor(card_infor,cards[i],num_of_infor);
+
+        if(strcmp(card_infor[0], MSSV) != 0) continue;
+
+        for(int j = 3; j < num_of_infor; j += 2){
+            if(strcmp(card_infor[j + 1],"-") == 0){
+                int distance = intervalsBetween2Days(card_infor[2], current_date);
+
+                if(distance > 0) result += distance * 5000;
+            }
+            else{
+                int distance = intervalsBetween2Days(card_infor[2], card_infor[j + 1]);
+
+                if(distance > 0) result += distance * 5000;
+            }
+        }
+    }
+
+    std::cout << "Penalty for student with ID " << MSSV << " is " << result << "\n";
+}
 
 void viewReadersLate(char array[][1000], int number_of_elements,char today[]){
     bool atLeastOne = false;
