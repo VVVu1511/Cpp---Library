@@ -38,58 +38,33 @@ void prompt(const char line[], char input[]){
 }
 
 int intervalsBetween2Days(char first_date[], char second_date[]){
-    int y1;
-    int m1;
-    int d1;
-    int y2;
-    int m2;
-    int d2;
-    parseDateCharIntoDayMonthYear(first_date,d1,m1,y1);
-    parseDateCharIntoDayMonthYear(second_date,d2,m2,y2);
+    int y1, m1, d1;
+    int y2, m2, d2;
+    
+    parseDateCharIntoDayMonthYear(first_date, d1, m1, y1);
+    parseDateCharIntoDayMonthYear(second_date, d2, m2, y2);
+    
+    std::tm time1 = {};
+    time1.tm_year = y1 - 1900; 
+    time1.tm_mon  = m1 - 1;    
+    time1.tm_mday = d1;
 
+    std::tm time2 = {};
+    time2.tm_year = y2 - 1900;
+    time2.tm_mon  = m2 - 1;
+    time2.tm_mday = d2;
 
+    std::time_t t1 = std::mktime(&time1);
+    std::time_t t2 = std::mktime(&time2);
+
+    return (t2 - t1) / (60 * 60 * 24);
 }
 
 bool isDay1LargerThanDay2(char day1[],char day2[]){
-    int y1;
-    int m1;
-    int d1;
-    int y2;
-    int m2;
-    int d2;
-    parseDateCharIntoDayMonthYear(day1,d1,m1,y1);
-    parseDateCharIntoDayMonthYear(day2,d2,m2,y2);
-    
-    if(y1 > y2) return true;
-    else if(y1 < y2) return false;
-
-    if(m1 > m2) return true;
-    else if(m1 < m2) return false;
-
-    if(d1 > d2) return true;
-    else if(d1 < d2) return false;
-
-    return false;
+    return intervalsBetween2Days(day2, day1) > 0;
 }
 
 void parseDateCharIntoDayMonthYear(char date[],int&day,int&month,int&year){
-    // char temp[1000],day_char[1000], month_char[1000],year_char[1000];
-
-    // strcpy(temp, date);
-
-    // char* token = strtok(temp, "/");
-    // if (token) strcpy(day_char, token);
-
-    // token = strtok(nullptr, "/");
-    // if (token) strcpy(month_char, token);
-
-    // token = strtok(nullptr, "/");
-    // if (token) strcpy(year_char, token);
-
-    // day = convertCharToNum(day_char);
-    // month = convertCharToNum(month_char);
-    // year = convertCharToNum(year_char);
-
     sscanf(date, "%d/%d/%d", &day, &month, &year);
 }
 

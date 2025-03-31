@@ -38,11 +38,11 @@ void viewTypeOfInformationOfBook(){
             << "6. Gia" << "\n";
 }
 
-int numberOfBooksBeingBorrowed(bool stateOfBooks[],int number_of_books){
+int numberOfBooksBeingBorrowed(bool stateOfBooks[],int number_of_books, char studentLosingBook[][1000]){
     int result = 0;
 
     for(int i = 0; i < number_of_books; i++){
-        if(stateOfBooks[i] == false) result++;
+        if(stateOfBooks[i] == false && strcmp(studentLosingBook[i],"-") == 0) result++;
     }
 
     return result;

@@ -15,7 +15,7 @@
 // int number_of_books_in_lib: Số lượng sách trong thư viện.
 // Output:
 // Cập nhật thông tin độc giả và trạng thái sách sau khi trả.
-void returnCard(char array[][1000],int number_of_elements,char input[],char booksInLib[][1000],bool isBookInLib[],int number_of_books_in_lib);
+void returnCard(char array[][1000],int number_of_elements,char input[],char booksInLib[][1000],bool isBookInLib[],int &number_of_books_in_lib);
 
 
 // Chức năng: Lấy thông tin mượn sách của người đọc, bao gồm mã độc giả, ngày mượn, ngày trả dự kiến và danh sách các sách được mượn.
@@ -23,7 +23,7 @@ void returnCard(char array[][1000],int number_of_elements,char input[],char book
 // Mã độc giả, ngày mượn, ngày trả dự kiến và mã ISBN của sách.
 // Output:
 // Cập nhật lại new_element chứa thông tin thẻ mượn sách. Thay đổi trạng thái sách trong thư viện.
-void getInputOfBorrowCard(char new_element[],bool stateOfBooks[],char books_in_lib[][1000],int number_of_books_in_lib);
+void getInputOfBorrowCard(char new_element[],bool stateOfBooks[],char books_in_lib[][1000],int &number_of_books_in_lib);
 
 // Chức năng: Lấy thông tin trả sách từ người đọc, bao gồm mã độc giả và ngày trả sách.
 // Input:

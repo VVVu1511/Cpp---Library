@@ -1,9 +1,11 @@
 #include "card.h"
 
-void returnCard(char array[][1000],int number_of_elements,char input[],char booksInLib[][1000],bool isBookInLib[],int number_of_books_in_lib){    
+void returnCard(char array[][1000],int number_of_elements,char input[],char booksInLib[][1000],bool isBookInLib[],int &number_of_books_in_lib){    
     char input_infor[100][1000];
     int num_of_input_infor;
     parseInfor(input_infor,input,num_of_input_infor);
+
+    number_of_books_in_lib += (num_of_input_infor - 2);
 
     for (int i = 0; i < number_of_elements; i++) {
         char card_infor[100][1000];
@@ -39,7 +41,7 @@ void viewTypeOfInformationOfCard(){
             << "6. Ton tai" << "\n";
 }
 
-void getInputOfBorrowCard(char new_element[],bool stateOfBooks[],char books_in_lib[][1000],int number_of_books_in_lib){
+void getInputOfBorrowCard(char new_element[],bool stateOfBooks[],char books_in_lib[][1000],int &number_of_books_in_lib){
     int number_of_books;
     std::cout << "Enter number of books you want to borrow: ";
     std::cin >> number_of_books;
@@ -58,6 +60,7 @@ void getInputOfBorrowCard(char new_element[],bool stateOfBooks[],char books_in_l
         stateOfBooks[book_ID] = false;
     }
     
+    number_of_books_in_lib -= number_of_books;
     writeBack(new_element,1,input,3 + number_of_books * 2);
 }
 

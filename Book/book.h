@@ -31,4 +31,4 @@ void viewTypeOfInformationOfBook();
 // int number_of_books: Tổng số sách trong thư viện.
 // Output:
 // Trả về số lượng sách đang được mượn
-int numberOfBooksBeingBorrowed(bool stateOfBooks[],int number_of_books);
+int numberOfBooksBeingBorrowed(bool stateOfBooks[],int number_of_books, char studentLosingBook[][1000]);

@@ -1,6 +1,7 @@
 
 #pragma once
-#include "./Helper/helper.h"
+#include "Helper/helper.h"
+#include "General/general.h"
 
 // Chức năng: Lấy thông tin của độc giả, bao gồm mã độc giả, họ tên, chứng minh nhân dân, ngày sinh, giới tính, email, địa chỉ, ngày lập thẻ và ngày hết hạn.
 // Input:
@@ -36,4 +37,6 @@ void viewTypeOfInformationOfReader();
 
 void viewReadersLate(char array[][1000], int number_of_elements,char today[]);
 
-void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char current_date[]);
+void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char current_date[],const char studentLosingBook[][1000], const int &num_of_books, char books[][1000]);
+
+void notifyLosingBook(char ISBN[],const char MSSV[], char studentLosingBook[][1000], int &num_of_books, char books[][1000], bool isBookInLib[]);

@@ -1,7 +1,8 @@
 #pragma once
 #include<cstring>
 #include<iostream>
-
+#include <ctime>
+#include <cstdlib>
 
 
 // Chức năng: Phân tách thông tin từ một chuỗi thông qua dấu phân cách (,) và lưu các phần tử vào mảng con.
@@ -76,8 +77,9 @@ void parseDateCharIntoDayMonthYear(char date[],int&day,int&month,int&year);
 // Trả về số nguyên tương ứng với chuỗi ký tự.
 int convertCharToNum(char input[]);
 
-
 int intervalsBetween2Days(char first_date[], char second_date[]);
+
+
 
 
 

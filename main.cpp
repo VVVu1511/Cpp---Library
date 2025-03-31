@@ -4,6 +4,7 @@
 #include "Book/book.h"
 #include "Card/card.h"
 
+//g++ -I. -IBook -ICard -IGeneral -IHelper -IReader -o main main.cpp Book/book.cpp Card/card.cpp General/general.cpp Helper/helper.cpp Reader/reader.cpp
 
 int main(){
     char readers[2][1000] = {
@@ -24,13 +25,13 @@ int main(){
     };
 
     char books_information[7][1000] = {
-        "HBO112,Adventure,Vu Van Vu,Unique publisher,2001,action,50",
-        "HCMUS113,Journey at HCMUS,Vu Van Vu,Limited publisher,2027,romance,1000",
-        "HCMUS119,Cinema,Nguyen Van A,Good publisher,1999,horror,200",
-        "HCMUS139,Tran Thi G,Pham Thi B,Past,2000,romance,15",
-        "HCMUS125,What is cinema,Nguyen Van C,Cinematic,1970,action,300",
-        "HCMUS127,The future,Ta Thi D,Future,1977,comedy,180",
-        "HCMUS130,The past,Nguyen Thi E,Past,1977,action,380"
+        "HBO112,Adventure,Vu Van Vu,Unique publisher,2001,action,50000",
+        "HCMUS113,Journey at HCMUS,Vu Van Vu,Limited publisher,2027,romance,100000",
+        "HCMUS119,Cinema,Nguyen Van A,Good publisher,1999,horror,200000",
+        "HCMUS139,Tran Thi G,Pham Thi B,Past,2000,romance,150000",
+        "HCMUS125,What is cinema,Nguyen Van C,Cinematic,1970,action,300000",
+        "HCMUS127,The future,Ta Thi D,Future,1977,comedy,180000",
+        "HCMUS130,The past,Nguyen Thi E,Past,1977,action,380000"
     };
 
     char cards[100][1000];
@@ -38,6 +39,12 @@ int main(){
     int number_of_books = 7;
     int number_of_readers = 2;
     int number_of_cards = 0;
+
+    char studentLosingBook[number_of_books][1000];
+
+    for(int i = 0; i < number_of_books; i++){
+        strcpy(studentLosingBook[i],"-");
+    }
 
     int number_of_types = 4;
     int number_of_genders = 2;
@@ -70,7 +77,9 @@ int main(){
                 << "17. So luong doc gia" << "\n" 
                 << "18. So luong doc gia theo gioi tinh" << "\n"
                 << "19. So sach dang duoc muon" << "\n"
-                << "20. Danh sach doc gia bi tre han" << "\n\n"
+                << "20. Danh sach doc gia bi tre han" << "\n"
+                << "21. Xem tien phat cua 1 hoc sinh" << "\n"
+                << "22. Hoc sinh lam mat sach" << "\n\n"
                 << "Enter your choice: ";
         int choice;
         int reader_ID;
@@ -240,13 +249,25 @@ int main(){
                 viewNumberOfElementByType(readers,genders,number_of_readers,number_of_genders,4);
                 break;
             case 19:
-                std::cout << "Number of books being borrowed: " << numberOfBooksBeingBorrowed(isBookInLib,number_of_books) << "\n";
+                std::cout << "Number of books being borrowed: " << numberOfBooksBeingBorrowed(isBookInLib,number_of_books,studentLosingBook) << "\n";
                 break;
             case 20:
                 prompt("Enter today's date: ",input);
                 viewReadersLate(cards,number_of_cards,input);
                 break;
-
+            case 21:
+                char current_date[1000];
+                prompt("Enter ID: ", input);
+                prompt("Enter current day: ", current_date);
+                viewFine(input, cards,number_of_cards, current_date, studentLosingBook,number_of_books,books_information);
+                break;
+            case 22:
+                char book_ISBN[1000];
+                prompt("Enter ID: ", input);
+                prompt("Enter ISBN: ", book_ISBN);
+                notifyLosingBook(book_ISBN, input,studentLosingBook,number_of_books,books_information,isBookInLib);
+                std::cout << "Succesfully notify losing book!\n";
+                break;
             default:
                 break;
         }
@@ -255,6 +276,6 @@ int main(){
         system("cls");
         
     }
-
+    
     return 0;
 }

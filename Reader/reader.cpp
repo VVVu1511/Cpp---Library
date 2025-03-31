@@ -1,6 +1,6 @@
 #include "reader.h"
 
-void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char current_date[]){
+void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char current_date[],const char studentLosingBook[][1000], const int &num_of_books, char books[][1000]){
     double result = 0;
 
     for(int i = 0; i < number_of_cards; i++){
@@ -21,6 +21,16 @@ void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char c
 
                 if(distance > 0) result += distance * 5000;
             }
+        }
+    }
+
+    for(int i = 0; i < num_of_books; i++){
+        if(strcmp(studentLosingBook[i], MSSV) == 0){
+            char book_infor[100][1000];
+            int num_of_infor;
+            parseInfor(book_infor,books[i],num_of_infor);
+
+            result += atof(book_infor[6]) * 2;
         }
     }
 
@@ -104,6 +114,11 @@ void viewTypeOfInformationOfReader(){
             << "8. Ngay het han" << "\n";
 }
 
-void viewFine(const char* MSSV){
-    
+void notifyLosingBook(char ISBN[],const char MSSV[], char studentLosingBook[][1000], int &num_of_books, char books[][1000], bool isBookInLib[]){
+    int bookID = findUsingInfor(books,num_of_books,ISBN, 0);    
+    if(isBookInLib[bookID]){
+        isBookInLib[bookID] = false;
+        num_of_books--;
+    }
+    strcpy(studentLosingBook[bookID], MSSV);
 }
