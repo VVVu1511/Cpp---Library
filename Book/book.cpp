@@ -1,14 +1,7 @@
 #include "book.h"
 
-void getInputOfBook(char *&new_element){
-    char** input = new char*[7];
-    for(int i = 0; i < 7; i++){
-        input[i] = new char[MAX_INFOR_LENGTH];
-        
-        for(int j = 0; j < MAX_INFOR_LENGTH; j++){
-            input[i][j] = '\0';
-        }
-    }
+void getInputOfBook(char new_element[]){
+    char input[7][1000];
 
     prompt("Ma ISBN: ",input[0]);
     prompt("Ten sach: ",input[1]);
@@ -19,13 +12,12 @@ void getInputOfBook(char *&new_element){
     prompt("Gia: ",input[6]);
     
     writeBack(new_element,1,input,7);
-
-    delete2Dchar(input,7);
 }  
 
-void printInforOfOneBook(char* information){
+void printInforOfOneBook(char information[]){
     int number = 0;
-    char** parsed_result = parseInfor(information,number);
+    char parsed_result[100][1000];
+    parseInfor(parsed_result,information,number);
     
     std::cout << "Ma ISBN: " << parsed_result[0] << "\n"
             << "Ten sach: " <<  parsed_result[1] << "\n"
@@ -34,8 +26,6 @@ void printInforOfOneBook(char* information){
             << "Nam xuat ban: " <<  parsed_result[4] << "\n"
             << "The loai: " <<  parsed_result[5] << "\n"
             << "Gia: " <<  parsed_result[6] << "\n";
-
-    delete2Dchar(parsed_result,number);
 }
 
 void viewTypeOfInformationOfBook(){

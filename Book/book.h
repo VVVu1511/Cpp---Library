@@ -6,7 +6,7 @@
 // information: chuỗi thông tin của cuốn sách.
 // Output:
 // In ra console các thông tin chi tiết của sách.
-void printInforOfOneBook(char* information);
+void printInforOfOneBook(char information[]);
 
 
 // Chức năng: Lấy thông tin sách từ người dùng, bao gồm Ma ISBN, tên sách, tên tác giả, nhà xuất bản, năm xuất bản, thể loại và giá tiền.
@@ -14,7 +14,7 @@ void printInforOfOneBook(char* information);
 // Người dùng nhập các thông tin sách qua console.
 // Output:
 // Lưu lại các thông tin sách vào new_element theo định dạng chuỗi.
-void getInputOfBook(char* &new_element);
+void getInputOfBook(char new_element[]);
 
 
 // Chức năng: Hiển thị các loại thông tin có thể có của sách.

@@ -1,13 +1,14 @@
 #include "reader.h"
 
 
-void viewReadersLate(char **array, int number_of_elements,char* today){
+void viewReadersLate(char array[][1000], int number_of_elements,char today[]){
     bool atLeastOne = false;
     char temp[2] = {'-','\0'};
 
     for(int i = 0; i < number_of_elements; i++){
         int number_of_output = 0;
-        char** infor = parseInfor(array[i],number_of_output);
+        char infor[100][1000];
+        parseInfor(infor,array[i],number_of_output);
         bool hasReturn = false;
 
         if(strcmp(infor[3],temp) != 0){
@@ -26,8 +27,6 @@ void viewReadersLate(char **array, int number_of_elements,char* today){
             std::cout << infor[0] << "\n";
             atLeastOne = true;
         }
-
-        delete2Dchar(infor,number_of_elements);
     }
 
     if(atLeastOne == false){
@@ -35,9 +34,10 @@ void viewReadersLate(char **array, int number_of_elements,char* today){
     }
 }
 
-void printInforOfOneReader(char* information){
+void printInforOfOneReader(char information[]){
     int number;
-    char** parsed_result = parseInfor(information,number);
+    char parsed_result[100][1000];
+    parseInfor(parsed_result,information,number);
     
     std::cout << "Ma doc gia: " << parsed_result[0] << "\n"
                 << "Ho ten: " <<  parsed_result[1] << "\n"
@@ -48,20 +48,11 @@ void printInforOfOneReader(char* information){
                 << "Dia chi: " <<  parsed_result[6] << "\n"
                 << "Ngay lap the: " <<  parsed_result[7] << "\n"
                 << "Ngay het han: " <<  parsed_result[8] << "\n";
-    
-    delete2Dchar(parsed_result,number);
 }
 
-void getInputOfReader(char *&new_element){
-    char** input = new char*[9];
-    for(int i = 0; i < 9; i++){
-        input[i] = new char[MAX_INFOR_LENGTH];
-        
-        for(int j = 0; j < MAX_INFOR_LENGTH; j++){
-            input[i][j] = '\0';
-        }
-    }
-
+void getInputOfReader(char new_element[]){
+    char input[9][1000];
+    
     prompt("Ma doc gia: ",input[0]);
     prompt("Ho ten: ",input[1]);
     prompt("Chung minh nhan dan: ",input[2]);
@@ -73,8 +64,6 @@ void getInputOfReader(char *&new_element){
     prompt("Ngay het han: ",input[8]);
 
     writeBack(new_element,1,input,9);
-
-    delete2Dchar(input,9);
 }
 
 void viewTypeOfInformationOfReader(){
@@ -87,4 +76,8 @@ void viewTypeOfInformationOfReader(){
             << "6. Dia Chi" << "\n"
             << "7. Ngay lap the" << "\n"
             << "8. Ngay het han" << "\n";
+}
+
+void viewFine(const char* MSSV){
+    
 }

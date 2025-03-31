@@ -6,76 +6,38 @@
 
 
 int main(){
-    char reader1[100] = {'2','3','1','2','7','5','4','3',',','V','u',' ','V','a','n',' ','V','u',',','1','1','0','0',' ','1','0','0','1',' ','0','1','1','0',',','1','5','/','1','1','/','2','0','0','5',',','m','a','l','e',',','v','v','v','@','g','m','a','i','l','.','c','o','m',',','2','2','2',' ','G','o','d',' ','S','t','r','e','e','t',',','1','2','/','9','/','2','0','2','3',',','1','2','/','9','/','2','0','2','7',',','\0'};
-    char reader2[105] = {'2','3','1','2','7','5','4','4',',','N','g','u','y','e','n',' ','V','a','n',' ','A',',','8','7','1','2',' ','5','6','3','4',' ','2','0','0','1',',','1','/','1','/','2','0','0','5',',','f','e','m','a','l','e',',','n','v','a','@','g','m','a','i','l','.','c','o','m',',','3','3','3',' ','G','o','d',' ','S','t','r','e','e','t',',','1','2','/','1','0','/','2','0','2','3',',','1','2','/','1','0','/','2','0','2','7',',','\0'};
-    char book1[60] = {'H','B','O','1','1','2',',','A','d','v','e','n','t','u','r','e',',','V','u',' ','V','a','n',' ','V','u',',','U','n','i','q','u','e',' ','p','u','b','l','i','s','h','e','r',',','2','0','0','1',',','a','c','t','i','o','n',',','5','0',',','\0'};
-    char book2[73] = {'H','C','M','U','S','1','1','3',',','J','o','u','r','n','e','y',' ','a','t',' ','H','C','M','U','S',',','V','u',' ','V','a','n',' ','V','u',',','L','i','m','i','t','e','d',' ','p','u','b','l','i','s','h','e','r',',','2','0','2','7',',','r','o','m','a','n','c','e',',','1','0','0','0',',','\0'};
-    char book3[61] = {'H','C','M','U','S','1','1','9',',','C','i','n','e','m','a',',','N','g','u','y','e','n',' ','V','a','n',' ','A',',','G','o','o','d',' ','p','u','b','l','i','s','h','e','r',',','1','9','9','9',',','h','o','r','r','o','r',',','2','0','0',',','\0'};
-    char book4[53] = {'H','C','M','U','S','1','3','9',',','T','r','a','n',' ','T','h','i',' ','G',',','P','h','a','m',' ','T','h','i',' ','B',',','P','a','s','t',',','2','0','0','0',',','r','o','m','a','n','c','e',',','1','5',',','\0'};
-    char book5[64] = {'H','C','M','U','S','1','2','5',',','W','h','a','t',' ','i','s',' ','c','i','n','e','m','a',',','N','g','u','y','e','n',' ','V','a','n',' ','C',',','C','i','n','e','m','a','t','i','c',',','1','9','7','0',',','a','c','t','i','o','n',',','3','0','0',',','\0'};
-    char book6[53] = {'H','C','M','U','S','1','2','7',',','T','h','e',' ','f','u','t','u','r','e',',','T','a',' ','T','h','i',' ','D',',','F','u','t','u','r','e',',','1','9','7','7',',','c','o','m','e','d','y',',','1','8','0',',','\0'};
-    char book7[53] = {'H','C','M','U','S','1','3','0',',','T','h','e',' ','p','a','s','t',',','N','g','u','y','e','n',' ','T','h','i',' ','E',',','P','a','s','t',',','1','9','7','7',',','a','c','t','i','o','n',',','3','8','0',',','\0'};
+    char readers[2][1000] = {
+        "23127543,Vu Van Vu,1100 1001 0110,15/11/2005,male,vvv@gmail.com,222 God Street,12/9/2023,12/9/2027",
+        "23127544,Nguyen Van A,8712 5634 2001,1/1/2005,female,nva@gmail.com,333 God Street,12/10/2023,12/10/2027"
+    };
     
-    char type1[7] = {'h','o','r','r','o','r','\0'};
-    char type2[7] = {'c','o','m','e','d','y','\0'};
-    char type3[7] = {'a','c','t','i','o','n','\0'};
-    char type4[8] = {'r','o','m','a','n','c','e','\0'};
+    char types[4][1000] = {
+        "horror",
+        "comedy",
+        "action",
+        "romance"
+    };
 
-    char gender1[5] = {'m','a','l','e','\0'};
-    char gender2[7] = {'f','e','m','a','l','e','\0'};
+    char genders[2][1000] = {
+        "male",
+        "female"
+    };
 
-    //sec
-    char readers_informations[2][1000];
-    strcpy(readers_informations[0], reader1);
-    strcpy(readers_informations[1], reader2);
-    //sec
-    char** readers_information;
-    readers_information = new char*[2];
-    readers_information[0] = new char[strlen(reader1) + 1];
-    strcpy(readers_information[0], reader1);
-    readers_information[1] = new char[strlen(reader2) + 1];
-    strcpy(readers_information[1], reader2);
+    char books_information[7][1000] = {
+        "HBO112,Adventure,Vu Van Vu,Unique publisher,2001,action,50",
+        "HCMUS113,Journey at HCMUS,Vu Van Vu,Limited publisher,2027,romance,1000",
+        "HCMUS119,Cinema,Nguyen Van A,Good publisher,1999,horror,200",
+        "HCMUS139,Tran Thi G,Pham Thi B,Past,2000,romance,15",
+        "HCMUS125,What is cinema,Nguyen Van C,Cinematic,1970,action,300",
+        "HCMUS127,The future,Ta Thi D,Future,1977,comedy,180",
+        "HCMUS130,The past,Nguyen Thi E,Past,1977,action,380"
+    };
 
-    char** books_information;
-    books_information = new char*[7];
-    books_information[0] = new char[strlen(book1) + 1];
-    strcpy(books_information[0], book1);
-    books_information[1] = new char[strlen(book2) + 1];
-    strcpy(books_information[1], book2);
-    books_information[2] = new char[strlen(book3) + 1];
-    strcpy(books_information[2], book3);
-    books_information[3] = new char[strlen(book4) + 1];
-    strcpy(books_information[3], book4);
-    books_information[4] = new char[strlen(book5) + 1];
-    strcpy(books_information[4], book5);
-    books_information[5] = new char[strlen(book6) + 1];
-    strcpy(books_information[5], book6);
-    books_information[6] = new char[strlen(book7) + 1];
-    strcpy(books_information[6], book7);
-
-    char** cards;
+    char cards[100][1000];
     
     int number_of_books = 7;
     int number_of_readers = 2;
     int number_of_cards = 0;
-    
-    char** book_types;
-    book_types = new char*[4];
-    book_types[0] = new char[strlen(type1) + 1];
-    strcpy(book_types[0], type1);
-    book_types[1] = new char[strlen(type2) + 1];
-    strcpy(book_types[1], type2);
-    book_types[2] = new char[strlen(type3) + 1];
-    strcpy(book_types[2], type3);
-    book_types[3] = new char[strlen(type4) + 1];
-    strcpy(book_types[3], type4);
-    
-    char** gender_types;
-    gender_types = new char*[2];
-    gender_types[0] = new char[strlen(gender1) + 1];
-    strcpy(gender_types[0], gender1);
-    gender_types[1] = new char[strlen(gender2) + 1];
-    strcpy(gender_types[1], gender2);
 
     int number_of_types = 4;
     int number_of_genders = 2;
@@ -117,24 +79,23 @@ int main(){
         int book_ID;
         std::cin >> choice;
         std::cin.ignore();
-        char *input = new char[MAX_INFOR_LENGTH];
-        for(int i = 0; i < MAX_INFOR_LENGTH; i++) input[i] = '\0';
+        char input[1000];
 
         switch(choice){
             case 0:
                 execute = false;
                 break;
             case 1:
-                viewList(readers_information,number_of_readers,0);
+                viewList(readers,number_of_readers,0);
                 break;
             case 2:
                 std::cout << "Fill in information for new reader" << "\n";
                 getInputOfReader(input);
-                addOneToArray(readers_information,number_of_readers,input);
+                addOneToArray(readers,number_of_readers,input);
                 std::cout << "Add reader successfully!" << "\n";
                 break;
             case 3:
-                viewList(readers_information,number_of_readers,0);
+                viewList(readers,number_of_readers,0);
                 std::cout << "Enter Reader ID(0 - " << number_of_readers - 1 << "): ";
                 std::cin >> reader_ID;
 
@@ -144,28 +105,28 @@ int main(){
                 std::cin.ignore();
 
                 std::cout << "Enter new data for that field: ";
-                std::cin.getline(input,MAX_INFOR_LENGTH);
+                std::cin.getline(input,1000);
 
-                changeInfor(readers_information,reader_ID,input,type_to_be_changed,0);
+                changeInfor(readers,reader_ID,input,type_to_be_changed,0);
                 std::cout << "Change information successfully!" << "\n";
                 break;
             case 4:
-                viewList(readers_information,number_of_readers,0);
+                viewList(readers,number_of_readers,0);
                 std::cout << "Enter Reader ID(0 -" << number_of_readers - 1 << "): ";
                 std::cin >> reader_ID;
 
                 viewTypeOfInformationOfReader();
                 std::cout << "Enter type to be deleted: " ;
                 std::cin >> type_to_be_deleted;
-                deleteInfor(readers_information,reader_ID,type_to_be_deleted,0);
+                deleteInfor(readers,reader_ID,type_to_be_deleted,0);
                 break;
             case 5:
                 std::cout << "Enter social ID: ";
-                std::cin.getline(input,MAX_INFOR_LENGTH);
-                reader_ID = findUsingInfor(readers_information,number_of_readers,input,2);
+                std::cin.getline(input,1000);
+                reader_ID = findUsingInfor(readers,number_of_readers,input,2);
                 
                 if(reader_ID != -1){
-                    printInforOfOneReader(readers_information[reader_ID]);
+                    printInforOfOneReader(readers[reader_ID]);
                 }
 
                 else{
@@ -175,11 +136,11 @@ int main(){
                 break;
             case 6:
                 std::cout << "Enter full name: ";
-                std::cin.getline(input,MAX_INFOR_LENGTH);
-                reader_ID = findUsingInfor(readers_information,number_of_readers,input,1);
+                std::cin.getline(input,1000);
+                reader_ID = findUsingInfor(readers,number_of_readers,input,1);
                 
                 if(reader_ID != -1){
-                    printInforOfOneReader(readers_information[reader_ID]);
+                    printInforOfOneReader(readers[reader_ID]);
                 }
 
                 else{
@@ -207,7 +168,7 @@ int main(){
                 std::cin.ignore();
 
                 std::cout << "Enter new data for that field: ";
-                std::cin.getline(input,MAX_INFOR_LENGTH);
+                std::cin.getline(input,1000);
 
                 changeInfor(books_information,book_ID,input,type_to_be_changed,1);
                 std::cout << "Change infor of book successfully!" << "\n";
@@ -226,7 +187,7 @@ int main(){
                 break;
             case 11:
                 std::cout << "Enter ISBN: ";
-                std::cin.getline(input,MAX_INFOR_LENGTH);
+                std::cin.getline(input,1000);
                 book_ID = findUsingInfor(books_information,number_of_books,input,0);
                 
                 if(book_ID != -1){
@@ -240,7 +201,7 @@ int main(){
                 break;
             case 12:
                 std::cout << "Enter book's name: ";
-                std::cin.getline(input,MAX_INFOR_LENGTH);
+                std::cin.getline(input,1000);
                 book_ID = findUsingInfor(books_information,number_of_books,input,1);
 
                 if(book_ID != -1){
@@ -268,13 +229,13 @@ int main(){
                 std::cout << "Number of books in library: " << number_of_books << "\n";
                 break;
             case 16:
-                viewNumberOfElementByType(books_information,book_types,number_of_books,number_of_types,5);
+                viewNumberOfElementByType(books_information,types,number_of_books,number_of_types,5);
                 break;
             case 17:
                 std::cout << "Number of readers: " << number_of_readers << "\n";
                 break;
             case 18:
-                viewNumberOfElementByType(readers_information,gender_types,number_of_readers,number_of_genders,4);
+                viewNumberOfElementByType(readers,genders,number_of_readers,number_of_genders,4);
                 break;
             case 19:
                 std::cout << "Number of books being borrowed: " << numberOfBooksBeingBorrowed(isBookInLib,number_of_books) << "\n";
@@ -292,14 +253,6 @@ int main(){
         system("cls");
         delete[] input;
     }
-
-
-
-    delete2Dchar(readers_information,number_of_books);
-    delete2Dchar(books_information,number_of_books);
-    delete2Dchar(cards,number_of_cards);
-    delete2Dchar(books_information,number_of_books);
-    delete2Dchar(gender_types,number_of_genders);
 
     return 0;
 }
