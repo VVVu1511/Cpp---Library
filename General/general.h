@@ -4,66 +4,112 @@
 #include "Helper/helper.h"
 
 
-// Chức năng: Hiển thị danh sách độc giả hoặc sách.
+// Chức năng:
+// Hiển thị danh sách array, phân biệt giữa reader và book.
+
 // Input:
-// array: mảng chứa thông tin độc giả hoặc sách.
-// number_of_elements: số lượng phần tử trong mảng.
-// type: loại thông tin cần hiển thị (0 cho độc giả, 1 cho sách).
+// array[][1000]: Mảng chứa thông tin.
+
+// number_of_elements: Số phần tử trong array.
+
+// type: Xác định loại danh sách:
+
+// 0: Hiển thị danh sách độc giả (Reader).
+
+// 1: Hiển thị danh sách sách (Book).
+
 // Output:
-// In ra danh sách thông tin của độc giả hoặc sách.
+// In ra danh sách độc giả hoặc sách.
 void viewList(char array[][1000], int number_of_elements, int type);
 
+// Chức năng:
+// Tìm kiếm phần tử trong mảng infor dựa trên type_of_infor và giá trị input.
 
-// Chức năng: Tìm kiếm thông tin trong mảng 2D dựa trên giá trị đầu vào và chỉ mục thông tin.
 // Input:
-// array: mảng 2D chứa các thông tin.
-// number_of_elements: số lượng phần tử trong mảng.
-// input: giá trị cần tìm.
-// type_of_infor: chỉ mục của thông tin cần tìm.
+// infor[][1000]: Mảng chứa thông tin.
+
+// number_of_elements: Số lượng phần tử trong infor.
+
+// input[]: Giá trị cần tìm.
+
+// type_of_infor: Chỉ mục của thông tin cần so sánh.
+
 // Output:
-// Trả về chỉ số của phần tử có thông tin phù hợp, nếu không trả về -1.
+// Trả về chỉ số (index) của phần tử có giá trị input trong infor.
+
+// Trả về -1 nếu không tìm thấy
 int findUsingInfor(char infor[][1000], int number_of_elements, char input[], int type_of_infor);
 
 
-// Chức năng: Thêm một phần tử mới vào mảng.
+// Chức năng:
+// Thêm một phần tử mới vào mảng array.
+
 // Input:
-// array: mảng cần thêm phần tử.
-// number_of_elements: số lượng phần tử trong mảng.
-// new_element: phần tử cần thêm vào mảng.
+// array[][1000]: Mảng chứa dữ liệu.
+
+// number_of_elements: Số lượng phần tử hiện tại.
+
+// new_element[]: Chuỗi chứa thông tin phần tử mới.
+
 // Output:
-// Mảng array được cập nhật với phần tử mới.
+// Thêm new_element vào array.
+
+// Cập nhật number_of_elements.
 void addOneToArray(char array[][1000], int &number_of_elements, char new_element[]);
 
-// Chức năng: Thay đổi thông tin của độc giả tại một chỉ số nhất định.
+
+// Chức năng:
+// Thay đổi thông tin của một phần tử trong readers tại vị trí ID.
+
 // Input:
-// readers: mảng chứa thông tin các độc giả.
-// ID: chỉ số của độc giả cần thay đổi.
-// new_infor: thông tin mới cần thay đổi.
-// type_of_infor: loại thông tin cần thay đổi.
-// type: loại thông tin.
+// readers[][1000]: Mảng chứa thông tin.
+
+// ID: Chỉ mục của phần tử cần thay đổi.
+
+// new_infor[]: Giá trị mới.
+
+// type_of_infor: Vị trí của thông tin cần thay đổi.
+
+// type: Không sử dụng trong hàm này.
+
 // Output:
-// Cập nhật thông tin của độc giả trong mảng.
+// Cập nhật thông tin mới vào readers[ID].
 void changeInfor(char readers[][1000], int ID, char new_infor[], int type_of_infor,int type);
 
-// Chức năng: Xóa thông tin của độc giả tại một chỉ số nhất định.
+
+// Chức năng:
+// Xóa một thông tin cụ thể trong infor tại vị trí ID.
+
 // Input:
-// readers: mảng chứa thông tin các độc giả.
-// ID: chỉ số của độc giả cần xóa.
-// type_of_infor: loại thông tin cần xóa.
-// type: loại thông tin.
+// infor[][1000]: Mảng chứa dữ liệu.
+
+// ID: Chỉ mục của phần tử cần chỉnh sửa.
+
+// type_of_infor: Vị trí thông tin cần xóa.
+
+// type: Không sử dụng trong hàm này.
+
 // Output:
-// Cập nhật lại thông tin của độc giả sau khi xóa.
+// Ghi đè thông tin cần xóa bằng dấu "-".
 void deleteInfor(char infor[][1000], int ID, int type_of_infor,int type);
 
 
-// Chức năng: Đếm số lượng phần tử của từng loại trong mảng.
+
+// Chức năng:
+// Đếm và hiển thị số lượng phần tử trong array theo từng loại trong types.
+
 // Input:
-// array: mảng chứa thông tin.
-// types: mảng chứa các loại thông tin.
-// number_of_ele_in_array: số lượng phần tử trong mảng.
-// number_of_types: số lượng loại thông tin.
-// type_of_infor: chỉ mục thông tin cần đếm.
+// array[][1000]: Mảng chứa dữ liệu.
+
+// types[][1000]: Danh sách các loại cần thống kê.
+
+// number_of_ele_in_array: Số lượng phần tử trong array.
+
+// number_of_types: Số lượng loại trong types.
+
+// type_of_infor: Vị trí thông tin cần so sánh.
+
 // Output:
-// In ra số lượng phần tử cho từng loại thông tin.
+// In ra số lượng phần tử của từng loại.
 void viewNumberOfElementByType(char array[][1000], char types[][1000], int number_of_ele_in_array, int number_of_types,int type_of_infor);
 
