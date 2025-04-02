@@ -52,14 +52,17 @@ void deleteInfor(char infor[][1000], int ID, int type_of_infor,int type){
     char res[100][1000];
     parseInfor(res,infor[ID],number_of_elements);
         
-    strcpy(infor[type_of_infor],"-");
+    strcpy(res[type_of_infor],"-");
 
-    writeBack(infor[ID],type,infor,number_of_elements);   
+    writeBack(infor[ID],type,res,number_of_elements);   
 }
 
 
 void viewNumberOfElementByType(char array[][1000], char types[][1000], int number_of_ele_in_array, int number_of_types,int type_of_infor){
-    int number_of_each_type[number_of_types] = {0};
+    int number_of_each_type[number_of_types];
+    for(int i = 0; i < number_of_types; i++){
+        number_of_each_type[i] = 0;
+    }
 
     for(int i = 0; i < number_of_ele_in_array; i++){
         int number_of_elements;

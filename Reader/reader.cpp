@@ -11,16 +11,16 @@ void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char c
         if(strcmp(card_infor[0], MSSV) != 0) continue;
 
         for(int j = 3; j < num_of_infor; j += 2){
+            int distance;
             if(strcmp(card_infor[j + 1],"-") == 0){
-                int distance = intervalsBetween2Days(card_infor[2], current_date);
+                distance = intervalsBetween2Days(card_infor[2], current_date);
 
-                if(distance > 0) result += distance * 5000;
             }
             else{
-                int distance = intervalsBetween2Days(card_infor[2], card_infor[j + 1]);
-
-                if(distance > 0) result += distance * 5000;
+                distance = intervalsBetween2Days(card_infor[2], card_infor[j + 1]);
             }
+
+            if(distance > 7) result += (distance - 7) * 5000;
         }
     }
 
@@ -39,22 +39,25 @@ void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char c
 
 void viewReadersLate(char array[][1000], int number_of_elements,char today[]){
     bool atLeastOne = false;
-    char temp[2] = {'-','\0'};
-
+    
     for(int i = 0; i < number_of_elements; i++){
         int number_of_output = 0;
         char infor[100][1000];
         parseInfor(infor,array[i],number_of_output);
         bool hasReturn = false;
 
-        if(strcmp(infor[3],temp) != 0){
-            if(isDay1LargerThanDay2(infor[3],infor[2]) == true){
-                hasReturn = true;
+        for(int i = 3; i < number_of_output; i++){
+            int interval;
+            if(strcmp(infor[i + 1],"-") != 0){
+                interval = intervalsBetween2Days(infor[2], infor[i + 1]);
+                
+                
             }
-        }
+            else{
+                interval = intervalsBetween2Days(infor[2], today);  
+            }
 
-        else{
-            if(isDay1LargerThanDay2(today,infor[2]) == true){
+            if(interval > 7){
                 hasReturn = true;
             }
         }

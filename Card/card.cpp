@@ -53,10 +53,10 @@ void getInputOfBorrowCard(char new_element[],bool stateOfBooks[],char books_in_l
     prompt("Ngay muon: ",input[1]);
     prompt("Ngay tra du kien: ",input[2]);
 
-    for(int i = 0; i < number_of_books; i += 2){
-        prompt("ISBN of book: ",input[i + 3]);
-        strcpy(input[i + 4], "-");
-        int book_ID = findUsingInfor(books_in_lib,number_of_books_in_lib,input[i + 3],0);
+    for(int i = 3; i < number_of_books * 2 + 3; i += 2){
+        prompt("ISBN of book: ",input[i]);
+        strcpy(input[i + 1], "-");
+        int book_ID = findUsingInfor(books_in_lib,number_of_books_in_lib,input[i],0);
         stateOfBooks[book_ID] = false;
     }
     
