@@ -37,6 +37,6 @@ void viewTypeOfInformationOfReader();
 
 void viewReadersLate(char array[][1000], int number_of_elements,char today[]);
 
-void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char current_date[],const char studentLosingBook[][1000], const int &num_of_books, char books[][1000]);
+void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char current_date[],char studentLosingBook[][1000], const int &num_of_books, char books[][1000]);
 
 void notifyLosingBook(char ISBN[],const char MSSV[], char studentLosingBook[][1000], int &num_of_books, char books[][1000], bool isBookInLib[]);

@@ -1,6 +1,6 @@
 #include "reader.h"
 
-void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char current_date[],const char studentLosingBook[][1000], const int &num_of_books, char books[][1000]){
+void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char current_date[],char studentLosingBook[][1000], const int &num_of_books, char books[][1000]){
     double result = 0;
 
     for(int i = 0; i < number_of_cards; i++){
@@ -13,11 +13,11 @@ void viewFine(const char MSSV[], char cards[][1000], int number_of_cards, char c
         for(int j = 3; j < num_of_infor; j += 2){
             int distance;
             if(strcmp(card_infor[j + 1],"-") == 0){
-                distance = intervalsBetween2Days(card_infor[2], current_date);
+                distance = intervalsBetween2Days(card_infor[1], current_date);
 
             }
             else{
-                distance = intervalsBetween2Days(card_infor[2], card_infor[j + 1]);
+                distance = intervalsBetween2Days(card_infor[1], card_infor[j + 1]);
             }
 
             if(distance > 7) result += (distance - 7) * 5000;

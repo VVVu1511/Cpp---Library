@@ -45,7 +45,7 @@ int main(){
     for(int i = 0; i < number_of_books; i++){
         strcpy(studentLosingBook[i],"-");
     }
-
+    
     int number_of_types = 4;
     int number_of_genders = 2;
 
@@ -276,6 +276,8 @@ int main(){
         system("cls");
         
     }
+
     
+
     return 0;
 }
